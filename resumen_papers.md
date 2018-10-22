@@ -6,17 +6,17 @@
 
 Se propone el uso de perdidas auxiliares no supervisadas por la perdida principal que permita reconstruir/predecir un segmento aleatorio de la secuencia antes o despues de un punto de anclaje, esto permite hacer truncate backpropagation (TTBP) unos pocos pasos desde la pérdida supervisada lo cual disminuye los costos de las redes recurrentes sin perdida en las dependencias de largo alcance. Un esquema principal de este paper se muestra en la siguiente figura.
 
-<img src="./Images/Aux_loss1.png" width="200"/> 
+<img src="./Images/Aux_loss1.png" width="500"/> 
 
 Se proponen dos tipos de perdidas auxiliares, la reconstrucción y la predicción.
 
 1) La perdida auxiliar mediante reconstruccion consiste en intentar reconstruir una subsecuencia anterior al punto de anclaje mediante un modelo de encoder-decoder regresivo, a este modelo se le llama rLSTM. Esto se puede apreciar en la siguiente figura.
 
-<img src="./Images/Aux_loss2.png" width="200"/> 
+<img src="./Images/Aux_loss2.png" width="500"/> 
 
 2) La perdida auxiliar de predicción consiste en predecir los siguientes pasos de la secuencia posteriores a un punto de anclaje, a este modelo se le llama pLSTM. Esto se puede apreciar en la siguiente figura.
 
-<img src="./Images/Aux_loss3.png" width="200"/> 
+<img src="./Images/Aux_loss3.png" width="500"/> 
 
 Los modelos se sometieron a pruebas de estrés de memoria y a tareas de lenguaje comparando la performance con LSTM full BP, con LSTM Truncate BP truncando en 300 steps y Transformer.
 
