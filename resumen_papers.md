@@ -24,15 +24,15 @@ Los resultados muestran que tiene en ciertos dataset presenta ventajas sustancia
 
 Tabla 1: Test accuracy (%)
 
-|                   | MNIST | pMNIST | CIFAR10 |
-|-------------------|-------|--------|---------|
-| LSTM Full BP      | 98.3  | 89.4   | 58.8    |
-| LSTM Truncate300  | 11.3  | 88.8   | 49.0    |
-| Transformer       | 98.9  | 97.9   | 62.2    |
-| rLSTM Truncate300 | 96.4  | 92.8   | 65.9    |
-| pLSTM Truncate300 | 95.4  | 92.5   | 64.7    |
-| rLSTM Full BP     | 98.4  | 95.2   | 72.2    |
-| pLSTM Full BP     | 98.0  | 92.8   | 67.6    |
+|                   | MNIST   | pMNIST  | CIFAR10 |
+|-------------------|---------|---------|---------|
+| LSTM Full BP      | 98.3    | 89.4    | 58.8    |
+| LSTM Truncate300  | 11.3    | 88.8    | 49.0    |
+| Transformer       | 98.9    |**97.9** | 62.2    |
+| rLSTM Truncate300 | 96.4    | 92.8    | 65.9    |
+| pLSTM Truncate300 | 95.4    | 92.5    | 64.7    |
+| rLSTM Full BP     |**98.4** | 95.2    |**72.2** |
+| pLSTM Full BP     | 98.0    | 92.8    | 67.6    |
 
 #### Nested LSTMs [arxiv:1801.10308](https://arxiv.org/abs/1801.10308)
 
