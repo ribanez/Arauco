@@ -1,6 +1,6 @@
 # RESUMEN PAPERS
 
-## Arquitecturas para el procesamiento de datos Secuenciales
+## Nuevas arquitecturas para el procesamiento de datos Secuenciales
 
 #### Learning Longer-term Dependencies in RNNs with Auxiliary Losses [arxiv:1803.00144](https://arxiv.org/abs/1803.00144)
 
@@ -53,12 +53,23 @@ En particular si la funcion de memoria ($m$) es la suma se puede reconstruir la 
 
 #### WaveNet: A Generative Model for Raw Audio [arxiv:1609.03499](https://arxiv.org/abs/1609.03499)
 
+En este paper se propone una nueva arquitectura para la generacion de audio bruto. La arquitectura es un modelo generativo autoregresivo capaz de utilizar toda la historia para la predicción del siguiente step, para ello utiliza celdas convolucionales con dilation y una última capa softmax para determinar la distribución de probabilidades.
+
+Esta arquitectura respeta el orden de la secuencia pese a utilizar cnn, esto asegura ser mas rápido que las arquitecturas recurrentes clásicas.
+
+Además se apilan dilated convolucionales siguiendo una serie del tipo ($2^l$) con $l$ el indice de la capa oculta respectiva, esto se puede apreciar en la siguiente imagen.
+
+<img src=".https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" width="500"/>
+
+Los resultados de este paper son subjetivos, ya que no evaluan performance sino que la capacidad de un humano de encontrar que el sonido generado era "natural" ya sea en música o en diálogos humanos, presentando preferencia en los idiomas estudiados (chino e inglés).
+
+
 #### An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modelling [arxiv:1803.01271](https://arxiv.org/abs/1803.01271)
 
 #### Trellis Networks for Sequence Modeling [arxiv:1810.06682](https://arxiv.org/abs/1810.06682)
 
 
-## Arquitecturas para Reinforcement Learning
+## Nuevas arquitecturas para Reinforcement Learning
 
 #### Configurable Markov Processes [arxiv:1806.05415](https://arxiv.org/abs/1806.05415)
 
