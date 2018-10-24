@@ -91,6 +91,22 @@ Tabla 1: Test accuracy (%)
 
 #### Trellis Networks for Sequence Modeling [arxiv:1810.06682](https://arxiv.org/abs/1810.06682)
 
+En este paper se propone una nueva arquitectura basada en las TCN y que utiliza celdas recurrentes en particular LSTM. Esta arquitectura se diferencia de las TCN en que 1) los pesos están vinculados a través de capas y 2) que el input se introduce en todas las capas.
+
+Una imagen de la TrellisNet a nivel atómico se puede ver en la siguiente imagen, en ella se ve como el input se introduce en cada capa. Sin embargo, una TrellisNet completa se puede construir uniendo estos elementos a través del tiempo y la profundidad. Dado un input se aplica el mismo procedimiento tanto en profundidad como en el tiempo, usando los mismos pesos ( TODO: necesito comprobar que entiendo bien esto)
+
+En el paper se demuestra que cualquier RNN truncada puede ser representada por una TrellisNet, con esto se demuestra que la expresividad teórica de una TrellisNet es al menos la de una RNN truncada.
+
+Si bien pueden utilizar cualquier activación no lineal, se decide usar una activación inspirada en las redes recurrentes y en particular en la LSTM.
+
+Los resultados muestran que en esta arquitectura supera al estado del arte en varios dataset.
+
+|             | MNIST   | pMNIST  | CIFAR10 |
+|-------------|---------|---------|---------|
+| TCN         | 99.0    | 97.2    |  -      |
+| r-LSTM      | 98.4    | 95.2    | 72.2    |
+| Transformer | 98.9    | 97.9    | 62.2    |
+| TrellisNet  | 99.2    | 98.1    | 73.4    |
 
 ## Nuevas arquitecturas para Reinforcement Learning
 
