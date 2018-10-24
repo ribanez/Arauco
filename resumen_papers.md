@@ -59,21 +59,44 @@ Esta arquitectura respeta el orden de la secuencia pese a utilizar cnn, esto ase
 
 Además se apilan dilated convolucionales siguiendo una serie del tipo ($2^l$) con $l$ el indice de la capa oculta respectiva, esto se puede apreciar en la siguiente imagen.
 
-<img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" width="500"/>
+<img src=".https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" width="500"/>
 
 Los resultados de este paper son subjetivos, ya que no evaluan performance sino que la capacidad de un humano de encontrar que el sonido generado era "natural" ya sea en música o en diálogos humanos, presentando preferencia en los idiomas estudiados (chino e inglés).
 
 
 #### An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modelling [arxiv:1803.01271](https://arxiv.org/abs/1803.01271)
 
+En este paper se propone una nueva arquitectura llamada Temporal Convolutional Networks (TCN) que presenta performance similar o mejor a redes recurrentes pero con un entrenamiento mucho más rápido ya que se basa en arquitecturas convolucionales las que pueden procesarse en paralelo.
+
+Para ello se utiliza una combinación de redes convolucionales profundas (con augmented y capas residuales) y dilated convolucionales.
+
+Para modelar secuencias temporales solo utiliza la "historia" no utiliza ningun input futuro, esto abarca muchas de las metodologias usadas en predicciones autoregresivas, pero esto deja afuera modelos como los utilizados en machine-translation o seq2seq.
+
+La red genera una secuencia del mismo tamaño que el input por lo que se agrega zero padding de largo (kernel - 1) para mantener las capas posteriores de la misma longitud que las anteriores.
+
+Las TCN utilizan causal convolutions, TCN = 1D FCN + causal convolutions.
+
+Se necesitan redes muy profundas con filtros muy grandes para poder tener un tamaño de memoria grande.
+
+Los resultados muestran que en ciertos dataset presenta mejoras sustanciales en comparación con las arquitecturas recurrentes clásicas.
+
+Tabla 1: Test accuracy (%)
+
+|            | MNIST   | pMNIST  |
+|------------|---------|---------|
+| LSTM       | 87.2    | 85.7    |
+| GRU        | 96.2    | 87.3    |
+| RNN        | 21.5    | 25.3    |
+| TCN        | 99.0    | 97.2    |
+
 #### Trellis Networks for Sequence Modeling [arxiv:1810.06682](https://arxiv.org/abs/1810.06682)
 
 
 ## Nuevas arquitecturas para Reinforcement Learning
 
-#### Configurable Markov Processes [arxiv:1806.05415](https://arxiv.org/abs/1806.05415)
-
 #### On improving Deep Reinforcement Learning for POMDPs [arxiv:1704.07978](https://arxiv.org/abs/1704.07978)
+
+#### Configurable Markov Processes [arxiv:1806.05415](https://arxiv.org/abs/1806.05415)
 
 #### Deep Variational Reinforcement Learning for POMDPs [arxiv:1806.02426](https://arxiv.org/abs/1806.02426)
 
