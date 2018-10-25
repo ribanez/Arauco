@@ -122,4 +122,8 @@ Los resultados muestran que se comporta mejor durante el aprendizaje, obteniendo
 
 #### Deep Variational Reinforcement Learning for POMDPs [arxiv:1806.02426](https://arxiv.org/abs/1806.02426)
 
+En este paper se propone un modelo de Deep Variational Reinforcement Learning (DVRL) el cual introduce un bias inductivo que permite al agente aprender a generar modelos de el ambiente y realizar inferencias en ese modelo para agregar efectivamente la información disponible. 
 
+Para el reinforcement learning se utiliza A2C, una simplificacion sincrona del asincrono A3C. Además, dado que el A3C intercala trayectorias desenrrolladas y realiza una actualización de parámetros solo cada n-steps, hace posible mantener un estado latente aproximadamente correcto.
+
+Los resultados muestran que con esta arquitectura se obtienen mejores resultados para algunos dataset, mientras que para otros la red recurrente convencional es mejor.
