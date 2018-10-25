@@ -74,6 +74,8 @@ Para modelar secuencias temporales solo utiliza la "historia" no utiliza ningun 
 
 La red genera una secuencia del mismo tamaño que el input por lo que se agrega zero padding de largo (kernel - 1) para mantener las capas posteriores de la misma longitud que las anteriores.
 
+<img src="./Images/TCN1.png" width="500"/>
+
 Las TCN utilizan causal convolutions, TCN = 1D FCN + causal convolutions.
 
 Se necesitan redes muy profundas con filtros muy grandes para poder tener un tamaño de memoria grande.
@@ -93,7 +95,9 @@ Tabla 1: Test accuracy (%)
 
 En este paper se propone una nueva arquitectura basada en las TCN y que utiliza celdas recurrentes en particular LSTM. Esta arquitectura se diferencia de las TCN en que 1) los pesos están vinculados a través de capas y 2) que el input se introduce en todas las capas.
 
-Una imagen de la TrellisNet a nivel atómico se puede ver en la siguiente imagen, en ella se ve como el input se introduce en cada capa. Sin embargo, una TrellisNet completa se puede construir uniendo estos elementos a través del tiempo y la profundidad. Dado un input se aplica el mismo procedimiento tanto en profundidad como en el tiempo, usando los mismos pesos ( TODO: necesito comprobar que entiendo bien esto)
+En la siguiente imagen se puede ver la TrellisNet a nivel atómico y con varias capas. En ella se ve como el input se introduce en cada capa. Sin embargo, una TrellisNet completa se puede construir uniendo estos elementos a través del tiempo y la profundidad. Dado un input se aplica el mismo procedimiento tanto en profundidad como en el tiempo, usando los mismos pesos ( TODO: necesito comprobar que entiendo bien esto)
+
+<img src="./Images/Trellis1.png" width="500"/>
 
 En el paper se demuestra que cualquier RNN truncada puede ser representada por una TrellisNet, con esto se demuestra que la expresividad teórica de una TrellisNet es al menos la de una RNN truncada.
 
@@ -114,6 +118,8 @@ Los resultados muestran que en esta arquitectura supera al estado del arte en va
 
 En este paper se estudia una nueva arquitectura de Reinforcement Learning (RL) para la toma de desicion sobre datos parcialmente observados (Partial Observable Markov Decision Process POMDP). Para ello la acción/observación de la serie de tiempo pasan por una capa LSTM que aprende estados latentes en base a los cuales una capa completamente conectada (fully connected) calcula Q-values como en las Deep Q-Networks (DQNs) convencionales. En la siguiente figura se muestra una representación de esta arquitectura.
 
+<img src="./Images/ADRQN1.png" width="500"/>
+
 La accion del estado anterior es incorporada como un input para la siguiente toma de decision, ademas de utilizar el estado previo de la LSTM donde se conserva la información por medio del espacio latente.
 
 Para poder comparar esta arquitectura con otras, se utilzaron data set completamente observados en los cuales con una probabilidad 0.5 se decide si se observa o no el evento en cada tiempo. 
@@ -124,6 +130,10 @@ Los resultados muestran que se comporta mejor durante el aprendizaje, obteniendo
 
 En este paper se propone un modelo de Deep Variational Reinforcement Learning (DVRL) el cual introduce un bias inductivo que permite al agente aprender a generar modelos de el ambiente y realizar inferencias en ese modelo para agregar efectivamente la información disponible. 
 
+<img src="./Images/DVRL1.png" width="500"/>
+
 Para el reinforcement learning se utiliza A2C, una simplificacion sincrona del asincrono A3C. Además, dado que el A3C intercala trayectorias desenrrolladas y realiza una actualización de parámetros solo cada n-steps, hace posible mantener un estado latente aproximadamente correcto.
+
+<img src="./Images/DVRL2.png" width="500"/>
 
 Los resultados muestran que con esta arquitectura se obtienen mejores resultados para algunos dataset, mientras que para otros la red recurrente convencional es mejor.
