@@ -112,7 +112,14 @@ Los resultados muestran que en esta arquitectura supera al estado del arte en va
 
 #### On improving Deep Reinforcement Learning for POMDPs [arxiv:1704.07978](https://arxiv.org/abs/1704.07978)
 
-#### Configurable Markov Processes [arxiv:1806.05415](https://arxiv.org/abs/1806.05415)
+En este paper se estudia una nueva arquitectura de Reinforcement Learning (RL) para la toma de desicion sobre datos parcialmente observados (Partial Observable Markov Decision Process POMDP). Para ello la acción/observación de la serie de tiempo pasan por una capa LSTM que aprende estados latentes en base a los cuales una capa completamente conectada (fully connected) calcula Q-values como en las Deep Q-Networks (DQNs) convencionales. En la siguiente figura se muestra una representación de esta arquitectura.
+
+La accion del estado anterior es incorporada como un input para la siguiente toma de decision, ademas de utilizar el estado previo de la LSTM donde se conserva la información por medio del espacio latente.
+
+Para poder comparar esta arquitectura con otras, se utilzaron data set completamente observados en los cuales con una probabilidad 0.5 se decide si se observa o no el evento en cada tiempo. 
+
+Los resultados muestran que se comporta mejor durante el aprendizaje, obteniendo mejores puntajes incluso cuando los eventos son completamente observados.
 
 #### Deep Variational Reinforcement Learning for POMDPs [arxiv:1806.02426](https://arxiv.org/abs/1806.02426)
+
 
