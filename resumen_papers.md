@@ -4,17 +4,17 @@
 
 #### Learning Longer-term Dependencies in RNNs with Auxiliary Losses [arxiv:1803.00144](https://arxiv.org/abs/1803.00144)
 
-En este paper se propone el uso de perdidas auxiliares no supervisadas, en contraposición a la perdida principal, que permita reconstruir/predecir un segmento aleatorio de la secuencia antes o después de un punto de anclaje, esto permite hacer truncate backpropagation (TTBP) unos pocos pasos desde la pérdida supervisada (perdida principal) lo cual disminuye los costos de las redes recurrentes sin pérdida en las dependencias de largo alcance. Un esquema principal de este paper se muestra en la siguiente figura.
+En este paper se propone el uso de pérdidas auxiliares no supervisadas, no relacionadas a la pérdida principal, que permita reconstruir/predecir un segmento aleatorio de la secuencia antes o después de un punto de anclaje, esto permite hacer truncate backpropagation (TTBP) unos pocos pasos desde la pérdida supervisada (perdida principal) lo cual disminuye los costos de las redes recurrentes sin perder las dependencias de largo alcance. Un esquema principal de este paper se muestra en la siguiente figura.
 
 <img src="./Images/Aux_loss1.png" width="500"/> 
 
-Se proponen dos tipos de perdidas auxiliares, la reconstrucción y la predicción.
+Se proponen dos tipos de pérdidas auxiliares, la reconstrucción y la predicción.
 
-1) La perdida auxiliar mediante reconstruccion consiste en intentar reconstruir una subsecuencia anterior al punto de anclaje mediante un modelo de encoder-decoder regresivo, a este modelo se le llama rLSTM. Esto se puede apreciar en la siguiente figura.
+1) La pérdida auxiliar mediante reconstruccion consiste en intentar reconstruir una subsecuencia anterior al punto de anclaje mediante un modelo de encoder-decoder regresivo, a este modelo se le llama rLSTM. Esto se puede apreciar en la siguiente figura.
 
 <img src="./Images/Aux_loss2.png" width="500"/> 
 
-2) La perdida auxiliar de predicción consiste en predecir los siguientes pasos de la secuencia posteriores a un punto de anclaje, a este modelo se le llama pLSTM. Esto se puede apreciar en la siguiente figura.
+2) La pérdida auxiliar de predicción consiste en predecir los siguientes pasos de la secuencia posteriores a un punto de anclaje, a este modelo se le llama pLSTM. Esto se puede apreciar en la siguiente figura.
 
 <img src="./Images/Aux_loss3.png" width="500"/> 
 
@@ -38,7 +38,7 @@ Tabla 1: Test accuracy (%)
 
 En este paper se propone una nueva arquitectura de red recurrente inspirada en la LSTM pero que presentaría mejores dependencias temporales de largo alcance comparada con el apilamiento de LSTM clásicas.
 
-Para ello lo que se propone es la concatenación de la celda de memoria ($c_{t}^{outer}$) en lugar de la suma como se realiza en la LSTM clásica, con ello la funcion de estado queda:
+Para ello lo que se propone es la concatenación de la celda de memoria ($c_{t}^{outer}$) en lugar de la suma como se realiza en la LSTM clásica, con ello la función de estado queda:
 
 \begin{aligned}
 c_t &= m_t\, (f_t\odot c_{t-1} , i_t \odot g_t) = m_t \,(\tilde{h_{t-1}}, \tilde{x_t})\\
@@ -46,14 +46,14 @@ c_t &= m_t\, (f_t\odot c_{t-1} , i_t \odot g_t) = m_t \,(\tilde{h_{t-1}}, \tilde
 \tilde{x_t} &= i_t \odot \sigma_c\left(x_t\, W_{xc} + h_{t-1}\, W_{hc} + b_c\right)
 \end{aligned}
 
-En particular si la funcion de memoria ($m$) es la suma se puede reconstruir la LSTM clásica. Ambas celdas se pueden visualizar en la siguiente figura.
+En particular si la función de memoria ($m$) es la suma se puede reconstruir la LSTM clásica. Ambas celdas se pueden visualizar en la siguiente figura.
 
 <img src="./Images/nested1.png" width="500"/>
 
 
 #### WaveNet: A Generative Model for Raw Audio [arxiv:1609.03499](https://arxiv.org/abs/1609.03499)
 
-En este paper se propone una nueva arquitectura para la generacion de audio bruto. La arquitectura es un modelo generativo autoregresivo capaz de utilizar toda la historia para la predicción del siguiente step, para ello utiliza celdas convolucionales con dilation y una última capa softmax para determinar la distribución de probabilidades.
+En este paper se propone una nueva arquitectura para la generación de audio bruto. La arquitectura es un modelo generativo autoregresivo capaz de utilizar toda la historia para la predicción del siguiente step, para ello utiliza celdas convolucionales con dilation y una última capa softmax para determinar la distribución de probabilidades.
 
 Esta arquitectura respeta el orden de la secuencia pese a utilizar cnn, esto asegura ser mas rápido que las arquitecturas recurrentes clásicas.
 
@@ -70,7 +70,7 @@ En este paper se propone una nueva arquitectura llamada Temporal Convolutional N
 
 Para ello se utiliza una combinación de redes convolucionales profundas (con augmented y capas residuales) y dilated convolucionales.
 
-Para modelar secuencias temporales solo utiliza la "historia" no utiliza ningun input futuro, esto abarca muchas de las metodologias usadas en predicciones autoregresivas, pero esto deja afuera modelos como los utilizados en machine-translation o seq2seq.
+Para modelar secuencias temporales solo utiliza la "historia" no utiliza ningún input futuro, esto abarca muchas de las metodologias usadas en predicciones autoregresivas, pero esto deja afuera modelos como los utilizados en machine-translation o seq2seq.
 
 La red genera una secuencia del mismo tamaño que el input por lo que se agrega zero padding de largo (kernel - 1) para mantener las capas posteriores de la misma longitud que las anteriores.
 
@@ -99,7 +99,7 @@ En la siguiente imagen se puede ver la TrellisNet a nivel atómico y con varias 
 
 <img src="./Images/Trellis1.png" width="500"/>
 
-En el paper se demuestra que cualquier RNN truncada puede ser representada por una TrellisNet, con esto se demuestra que la expresividad teórica de una TrellisNet es al menos la de una RNN truncada.
+En el paper se demuestra que cualquier RNN truncada puede ser representada por una TrellisNet, con esto se demuestra que la expresividad teórica de una TrellisNet es a lo menos la de una RNN truncada.
 
 Si bien pueden utilizar cualquier activación no lineal, se decide usar una activación inspirada en las redes recurrentes y en particular en la LSTM.
 
@@ -116,11 +116,13 @@ Los resultados muestran que en esta arquitectura supera al estado del arte en va
 
 #### On improving Deep Reinforcement Learning for POMDPs [arxiv:1704.07978](https://arxiv.org/abs/1704.07978)
 
-En este paper se estudia una nueva arquitectura de Reinforcement Learning (RL) para la toma de desicion sobre datos parcialmente observados (Partial Observable Markov Decision Process POMDP). Para ello la acción/observación de la serie de tiempo pasan por una capa LSTM que aprende estados latentes en base a los cuales una capa completamente conectada (fully connected) calcula Q-values como en las Deep Q-Networks (DQNs) convencionales. En la siguiente figura se muestra una representación de esta arquitectura.
+En este paper se estudia una nueva arquitectura de Reinforcement Learning (RL) para la toma de decisión sobre datos parcialmente observados (Partial Observable Markov Decision Process POMDP). Para ello la acción/observación de la serie de tiempo pasan por una capa LSTM que aprende estados latentes en base a los cuales una capa completamente conectada (fully connected) calcula Q-values como en las Deep Q-Networks (DQNs) convencionales. 
+
+En la siguiente figura se muestra una representación de esta arquitectura.
 
 <img src="./Images/ADRQN1.png" width="500"/>
 
-La accion del estado anterior es incorporada como un input para la siguiente toma de decision, ademas de utilizar el estado previo de la LSTM donde se conserva la información por medio del espacio latente.
+La acción del estado anterior es incorporada como un input para la siguiente toma de decision, además de utilizar el estado previo de la LSTM donde se conserva la información por medio del espacio latente.
 
 Para poder comparar esta arquitectura con otras, se utilzaron data set completamente observados en los cuales con una probabilidad 0.5 se decide si se observa o no el evento en cada tiempo. 
 
