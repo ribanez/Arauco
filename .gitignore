@@ -46,3 +46,6 @@ fabric.properties
 
 *.iml
 modules.xml
+
+### DS_STORE
+.DS_Store
